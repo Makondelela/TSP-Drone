@@ -1,0 +1,559 @@
+/* static/styles.css */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #2d3436;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.delivery-action {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.start-delivery-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #27ae60;
+    color: white;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.start-delivery-btn:hover {
+    background-color: #2ecc71;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.start-delivery-btn .btn-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.header-content h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+.heading-icon {
+    width: 120px;         /* Adjust size as needed */
+    height: 120px;
+    vertical-align: middle;
+    margin-right: 8px;   /* Spacing between icon and text */
+}
+
+.hospital-icon{
+    width: 50px;         /* Adjust size as needed */
+    height: 50px;
+    vertical-align: middle;
+}
+
+
+.subtitle {
+    color: rgba(255,255,255,0.9);
+    font-weight: 300;
+    font-size: 1.1rem;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+}
+
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.right-panel {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    padding: 2rem;
+}
+
+/* Origin Card Styles */
+.origin-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.card-header {
+    margin-bottom: 1rem;
+}
+
+.card-header h2 {
+    color: #2c3e50;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.decorative-line {
+    width: 50px;
+    height: 3px;
+    background: #3498db;
+    border-radius: 2px;
+}
+
+.origin-marker {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.marker-icon {
+    width: 30px;
+    height: 30px;
+}
+
+
+.origin-details h3 {
+    color: #2c3e50;
+    margin-bottom: 0.25rem;
+}
+
+.coordinates {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+.origin-note {
+    color: #95a5a6;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Hospital Selection Styles */
+.hospital-selection-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.select-controls {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.control-btn {
+    flex: 1;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    background: #f8f9fa;
+    color: #2c3e50;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.control-btn:hover {
+    background: #3498db;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(52,152,219,0.3);
+}
+
+.btn-icon {
+    font-size: 1.1rem;
+}
+
+.hospital-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.hospital-item {
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.hospital-item:hover {
+    background: #f8f9fa;
+}
+
+.hospital-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.hospital-checkbox {
+    position: absolute;
+    opacity: 0;
+}
+
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #bdc3c7;
+    border-radius: 5px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.hospital-checkbox:checked + .custom-checkbox {
+    background: #3498db;
+    border-color: #3498db;
+}
+
+.hospital-checkbox:checked + .custom-checkbox::after {
+    content: "✓";
+    position: absolute;
+    color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hospital-info {
+    flex: 1;
+}
+
+.hospital-name {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.hospital-coords {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+/* Primary Button Styles */
+.primary-btn {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52,152,219,0.4);
+}
+
+/* Route Summary Styles */
+.route-summary {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.route-summary.hidden {
+    display: none;
+}
+
+.route-summary.collapsed {
+    height: 45px; /* Match header height */
+    overflow: hidden;
+}
+
+.route-summary.collapsed .summary-content {
+    display: none;
+}
+
+.route-summary.collapsed .summary-header::after {
+    content: '▶';
+    margin-left: 8px;
+    align-items: center;
+}
+
+.summary-header {
+    background: #f8f9fa;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    align-items: center;
+}
+
+.summary-header::after {
+    content: '▼';
+    margin-left: 8px;
+    font-size: 0.8em;
+    color: #7f8c8d;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.summary-icon {
+    font-size: 1.4rem;
+    width: 25px;
+    height: 25px;
+}
+
+.summary-content {
+    padding: 1.2rem;
+}
+
+.metric-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.metric-icon {
+    font-size: 1.8rem;
+    width: 50px;
+    height: 50px;
+}
+
+.metric-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.sequence-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.sequence-title {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+}
+
+.sequence-container {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+/* Loading Overlay Styles */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    z-index: 10;
+}
+
+.loading-overlay.hidden {
+    display: none;
+}
+
+.loader-container {
+    text-align: center;
+}
+
+.drone-loader-icon {
+    width: 200px;     
+    height: 200px;
+    animation: float 1.5s ease-in-out infinite;
+}
+
+
+.loading-text {
+    color: #7f8c8d;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Map Styles */
+.map-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.map-legend {
+    display: flex;
+    gap: 1rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.legend-marker {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.legend-marker.origin {
+    background: #e74c3c;
+}
+
+.legend-marker.hospital {
+    background: #3498db;
+}
+
+.map-container {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1rem;
+    height: 640px;
+}
+
+#routeMap {
+    width: 100%;
+    height: 600px;
+    border-radius: 8px;
+}
+
+/* Empty State Styles */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.empty-state.hidden {
+    display: none;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-top: 100px;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+    width: 100px;
+    height: 100px;
+}
+
+.empty-title {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.empty-text {
+    color: #7f8c8d;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+/* Error Card Styles */
+.error-card {
+    background: #f8d7da;
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.error-card.hidden {
+    display: none;
+}
+
+.error-icon {
+    font-size: 2rem;
+}
+
+.error-content {
+    flex: 1;
+}
+
+.error-title {
+    color: #721c24;
+    margin-bottom: 0.5rem;
+}
+
+.error-text {
+    color: #721c24;
+    font-size: 0.9rem;
+}
+
+.results-container.hidden {
+    display: none;
+    z-index:99;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .content {
+        grid-template-columns: 1fr;
+    }
+    
+    .route-summary {
+        position: static;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+}

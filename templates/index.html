@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Route Simulator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>
+                    <img src="{{ url_for('static', filename='icons/drone.png') }}" alt="Drone Icon" class="heading-icon">
+                    Drone Route Optimizer
+                </h1>                
+                <p class="subtitle">AI-Powered Medical Delivery Pathfinding</p>
+            </div>
+        </header>
+        
+        <div class="content">
+            <div class="left-panel">
+                <div class="origin-card">
+                    <div class="card-header">
+                        <h2>🏁 Origin Point</h2>
+                        <div class="decorative-line"></div>
+                    </div>
+                    <div class="origin-info">
+                        <div class="origin-marker">
+                            <img class="marker-icon" src="{{ url_for('static', filename='icons/location.png') }}" alt="Marker Icon">
+                            <div class="origin-details">
+                                <h3>{{ origin.name|replace('_', ' ') }}</h3>
+                                <p class="coordinates">({{ origin.x }}, {{ origin.y }})</p>
+                            </div>
+                        </div>
+                        <p class="origin-note">All routes start and end at this location</p>
+                    </div>
+                </div>
+
+                <div class="hospital-selection-card">
+                    <div class="card-header">
+                        <h2>
+                            <img src="{{ url_for('static', filename='icons/hospital.png') }}" alt="Hospital Icon" class="hospital-icon">
+                             Select Hospitals
+                        </h2>
+                        <div class="decorative-line"></div>
+                    </div>
+                    <div class="select-controls">
+                        <button id="selectAll" class="control-btn">
+                            <span class="btn-icon">✓</span> Select All
+                        </button>
+                        <button id="deselectAll" class="control-btn">
+                            <span class="btn-icon">✕</span> Deselect All
+                        </button>
+                    </div>
+                    <div class="hospital-list">
+                        {% for hospital in hospitals %}
+                        <div class="hospital-item">
+                            <label class="hospital-label">
+                                <input type="checkbox" class="hospital-checkbox" value="{{ hospital.name }}">
+                                <span class="custom-checkbox"></span>
+                                <div class="hospital-info">
+                                    <span class="hospital-name">{{ hospital.name|replace('_', ' ') }}</span>
+                                    <span class="hospital-coords">({{ hospital.x }}, {{ hospital.y }})</span>
+                                </div>
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class="action-container">
+                    <button id="optimizeRoute" class="primary-btn">
+                        <span class="btn-icon"></span> Optimize Route
+                    </button>
+                </div>
+            </div>
+            
+            <div class="right-panel">
+                <div id="routeSummary" class="route-summary hidden">
+                    <div class="summary-header">
+                        <div class="header-title">
+                            <img src="{{ url_for('static', filename='icons/summary.png') }}" alt="Summary Icon" class="summary-icon">
+                            <h3>Route Summary</h3>
+                        </div>
+                    </div>
+                    <div class="summary-content">
+                        <div class="metric-card">
+                            <img src="{{ url_for('static', filename='icons/distance.png') }}" alt="Metric Icon" class="metric-icon">
+                            <div class="metric-info">
+                                <p class="metric-label">Total Distance</p>
+                                <p class="metric-value" id="totalDistance"></p>
+                            </div>
+                        </div>
+                        <div class="sequence-card">
+                            <h4 class="sequence-title">Delivery Sequence</h4>
+                            <div class="sequence-container">
+                                <ol id="routeSequence"></ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="loadingIndicator" class="loading-overlay hidden">
+                    <div class="loader-container">
+                        <div class="drone-loader">
+                            <img src="{{ url_for('static', filename='icons/drone.png') }}" alt="Loading Drone" class="drone-loader-icon">
+                        </div>                        
+                        <p class="loading-text">Calculating Optimal Path...</p>
+                    </div>
+                </div>
+                
+                <div id="results" class="results-container hidden">
+                    <div class="map-header">
+                        <h2>Route Visualization</h2>
+                        <div class="map-legend">
+                            <div class="legend-item">
+                                <span class="legend-marker origin"></span> Origin
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-marker hospital"></span> Hospital
+                            </div>
+                        </div>
+                    </div>
+                    <div class="map-container">
+                        <canvas id="routeMap" width="600" height="600"></canvas>
+                    </div>
+
+                    <div class="delivery-action">
+                        <a href="/start-delivery" id="startDeliveryBtn" class="start-delivery-btn">
+                            <img src="{{ url_for('static', filename='icons/drone.png') }}" alt="Drone Icon" class="btn-icon">
+                            Start Delivery
+                        </a>
+                    </div>
+                </div>
+                
+                <div id="noSelection" class="empty-state">
+                    <img src="{{ url_for('static', filename='icons/map.png') }}" alt="Empty Icon" class="empty-icon">
+                    <h3 class="empty-title">Ready for Takeoff</h3>
+                    <p class="empty-text">Select hospitals to generate an optimized delivery route</p>
+                </div>
+                
+                <div id="errorMessage" class="error-card hidden">
+                    <div class="error-icon"></div>
+                    <div class="error-content">
+                        <h3 class="error-title">Navigation Error</h3>
+                        <p class="error-text" id="errorText"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
